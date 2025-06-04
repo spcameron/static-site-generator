@@ -2,7 +2,7 @@ import unittest
 
 from main import *
 from textnode import TextType, TextNode
-from htmlnode import HTMLNode, LeafNode, ParentNode
+from htmlnode import HTMLNode, LeafNode, ParentNode # type: ignore
 
 
 class TestHTMLNode(unittest.TestCase):
