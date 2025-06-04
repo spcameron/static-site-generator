@@ -1,7 +1,8 @@
 import unittest
 
 from textnode import TextType, TextNode
-from htmlnode import HTMLNode, LeafNode, ParentNode, text_node_to_html_node # type: ignore
+from htmlnode import HTMLNode, LeafNode, ParentNode # type: ignore
+from node_converter import text_node_to_html_node
 
 
 class TestHTMLNode(unittest.TestCase):
