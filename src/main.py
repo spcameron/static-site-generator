@@ -3,11 +3,11 @@ import os, shutil, sys
 from copy_static import copy_static_to_docs
 from generate_page import generate_page
 
-dir_path_content = "./content"
-dir_path_public = "./docs"
+dir_path_content = "content"
+dir_path_public = "docs"
 html_template = "template.html"
 
-basepath = sys.argv[0] if sys.argv else "/"
+basepath = sys.argv[1] if sys.argv else "/"
 
 def main():
     copy_static_to_docs()

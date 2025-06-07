@@ -1,10 +1,10 @@
 import os, shutil
 
-dir_path_static = "./static"
-dir_path_docs = "./docs"
+dir_path_static = "static"
+dir_path_docs = "docs"
 
 def copy_static_to_docs():
-    print("Deleting existing public directory ...\n")
+    print("Deleting existing docs directory ...\n")
     if os.path.exists(dir_path_docs):
         shutil.rmtree(dir_path_docs)
     
