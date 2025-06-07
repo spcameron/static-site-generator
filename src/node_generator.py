@@ -110,7 +110,7 @@ def quote_text_to_children(block):
     html_nodes = []
     split_lines = block.split(">")
     for line in split_lines:
-        text_nodes = text_to_text_nodes(line)
+        text_nodes = text_to_text_nodes(line.strip())
         for node in text_nodes:
             html_node = text_node_to_html_node(node)
             html_nodes.append(html_node)
@@ -135,7 +135,7 @@ def ol_text_to_children(block):
     return html_nodes
 
 def split_ordered_list(block):
-    regex = r"([0-9*]. )"
+    regex = r"([0-9]+\. )"
     matches = re.findall(regex, block)
     block_text = block
     split_lines = []
