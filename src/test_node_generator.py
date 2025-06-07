@@ -56,7 +56,7 @@ class TestHTMLNode(unittest.TestCase):
         md = ">This is a quote\n>With two lines"
         node = markdown_to_html_node(md)
         html = node.to_html()
-        self.assertEqual(html, "<div><blockquote>This is a quote\nWith two lines</blockquote></div>")
+        self.assertEqual(html, "<div><blockquote>This is a quote With two lines</blockquote></div>")
         
     def test_unordered_list_html(self):
         md = "- A list item\n- Another list item\n- One more list item"

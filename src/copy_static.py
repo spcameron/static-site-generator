@@ -1,30 +1,33 @@
 import os, shutil
 
+dir_path_static = "./static"
+dir_path_public = "./public"
+
 def copy_static_to_public():
-    if os.path.exists("./public/"):
-        shutil.rmtree("./public/")
-        print("Deleted existing public directory")
-    os.mkdir("./public/")
-    print("Created new public directory\n")
+    print("Deleting existing public directory ...\n")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
     
-    copy_tree("./static/", "./public/")
+    copy_files(dir_path_static, dir_path_public)
     
-def copy_tree(source_dir, target_dir):
-    print(f"Calling copy function from {source_dir} to {target_dir}")
+def copy_files(source_dir, dest_dir):
+    print(f"Calling copy function from {source_dir} to {dest_dir} ...\n")
     
     list_dir = os.listdir(source_dir)
-    print(f"{source_dir} contains the following elements: {list_dir}\n")
+    if list_dir:
+        print(f"{source_dir} contains the following elements: {list_dir}\n")
     
-    for item in list_dir:
-        curr_path = os.path.join(source_dir, item)
-        target_path = os.path.join(target_dir, item)
-        if os.path.isfile(curr_path):
-            print(f"{item} is a file")
-            shutil.copy(curr_path, target_path)
-            print(f"Copied {item} from {source_dir} to {target_dir}\n")
-        if os.path.isdir(curr_path):
-            print(f"{item} is a dir")
-            if not os.path.exists(target_path):
-                os.mkdir(target_path)
-                print(f"Created {target_path}\n")
-            copy_tree(curr_path, target_path)
+    if not os.path.exists(dest_dir):
+        print(f"Creating {dest_dir} directory ...\n")
+        os.mkdir(dest_dir)
+    
+    for filename in list_dir:
+        from_path = os.path.join(source_dir, filename)
+        dest_path = os.path.join(dest_dir, filename)
+        if os.path.isfile(from_path):
+            print(f"{filename} is a file ...")
+            shutil.copy(from_path, dest_path)
+            print(f"... copied {filename} from {source_dir} to {dest_dir}\n")
+        if os.path.isdir(from_path):
+            print(f"{filename} is a directory ...\n")
+            copy_files(from_path, dest_path)
