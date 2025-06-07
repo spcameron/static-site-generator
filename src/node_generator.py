@@ -110,7 +110,7 @@ def quote_text_to_children(block):
     html_nodes = []
     split_lines = block.split(">")
     for line in split_lines:
-        text_nodes = text_to_text_nodes(line.replace("\n", " "))
+        text_nodes = text_to_text_nodes(line.replace("\n", " ").lstrip())
         for node in text_nodes:
             html_node = text_node_to_html_node(node)
             html_nodes.append(html_node)
