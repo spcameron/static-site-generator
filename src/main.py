@@ -1,14 +1,16 @@
-import os, shutil
+import os, shutil, sys
 
-from copy_static import copy_static_to_public
+from copy_static import copy_static_to_docs
 from generate_page import generate_page
 
 dir_path_content = "./content"
-dir_path_public = "./public"
+dir_path_public = "./docs"
 html_template = "template.html"
 
+basepath = sys.argv[0] if sys.argv else "/"
+
 def main():
-    copy_static_to_public()
+    copy_static_to_docs()
     traverse_tree_and_generate_html(dir_path_content)
     
     
@@ -27,7 +29,7 @@ def traverse_tree_and_generate_html(source_dir):
         if os.path.isfile(source_filepath):
             if dest_filepath[-3:] == ".md":
                 dest_filepath = dest_filepath.replace(".md", ".html")
-                generate_page(source_filepath, html_template, dest_filepath)
+                generate_page(source_filepath, html_template, dest_filepath, basepath)
     
 if __name__ == "__main__":
     main()

@@ -1,14 +1,14 @@
 import os, shutil
 
 dir_path_static = "./static"
-dir_path_public = "./public"
+dir_path_docs = "./docs"
 
-def copy_static_to_public():
+def copy_static_to_docs():
     print("Deleting existing public directory ...\n")
-    if os.path.exists(dir_path_public):
-        shutil.rmtree(dir_path_public)
+    if os.path.exists(dir_path_docs):
+        shutil.rmtree(dir_path_docs)
     
-    copy_files(dir_path_static, dir_path_public)
+    copy_files(dir_path_static, dir_path_docs)
     
 def copy_files(source_dir, dest_dir):
     print(f"Calling copy function from {source_dir} to {dest_dir} ...\n")
