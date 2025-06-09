@@ -1,16 +1,7 @@
 import os, shutil
 
-dir_path_static = "static"
-dir_path_docs = "docs"
-
-def copy_static_to_docs():
-    print("Deleting existing docs directory ...\n")
-    if os.path.exists(dir_path_docs):
-        shutil.rmtree(dir_path_docs)
     
-    copy_files(dir_path_static, dir_path_docs)
-    
-def copy_files(source_dir, dest_dir):
+def copy_files_recursive(source_dir, dest_dir):
     print(f"Calling copy function from {source_dir} to {dest_dir} ...\n")
     
     list_dir = os.listdir(source_dir)
@@ -28,6 +19,5 @@ def copy_files(source_dir, dest_dir):
             print(f"{filename} is a file ...")
             shutil.copy(from_path, dest_path)
             print(f"... copied {filename} from {source_dir} to {dest_dir}\n")
-        if os.path.isdir(from_path):
-            print(f"{filename} is a directory ...\n")
-            copy_files(from_path, dest_path)
+        elif os.path.isdir(from_path):
+            copy_files_recursive(from_path, dest_path)
